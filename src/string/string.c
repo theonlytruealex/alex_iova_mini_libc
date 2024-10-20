@@ -184,7 +184,7 @@ void *memmove(void *destination, const void *source, size_t num)
 	//it always copies exactly num bytes.
 	if (destination < source) {
 		for (i = 0; i < num; i++) {
-			buffer[i] = string_src[i];
+			string_dst[i] = string_src[i];
 		}
 	}
 	else {
@@ -197,12 +197,27 @@ void *memmove(void *destination, const void *source, size_t num)
 
 int memcmp(const void *ptr1, const void *ptr2, size_t num)
 {
-	/* TODO: Implement memcmp(). */
-	return -1;
+	size_t i = 0;
+	char* str1 = (char*)ptr1;
+	char* str2 = (char*)ptr2;
+	while (i < num) {
+		if (str1[i] > str2[i]) {
+			return 1;
+		}
+		if (str1[i] < str2[i]) {
+			return -1;
+		}
+		i++;
+	}
+	return 0;
 }
 
 void *memset(void *source, int value, size_t num)
 {
-	/* TODO: Implement memset(). */
+	char c = (char)value;
+	char* str = (char*)source;
+	for (size_t i = 0; i < num; i++) {
+		str[i] = c;
+	}
 	return source;
 }
