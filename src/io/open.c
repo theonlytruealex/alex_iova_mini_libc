@@ -7,6 +7,14 @@
 
 int open(const char *filename, int flags, ...)
 {
-	/* TODO: Implement open system call. */
-	return -1;
+	va_list valist;
+	long a;
+	va_start(valist, 1);
+	a = va_arg(valist, long);
+	long res = syscall(2, filename, flags, a);
+	if (res < 0) {
+		errno = -res;
+		return -1;
+	}
+	return res;
 }
