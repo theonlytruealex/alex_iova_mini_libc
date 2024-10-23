@@ -29,7 +29,7 @@ void *calloc(size_t nmemb, size_t size)
 	size_t *free_support = (size_t *)ret;
 	free_support[0] = len;
 	char *zeroer = (char *)ret;
-	int i;
+	size_t i;
 	for (i = sizeof(size_t); i < len; i++) {
 		zeroer[i] = 0;
 	}

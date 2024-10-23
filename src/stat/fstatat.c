@@ -42,12 +42,14 @@ struct statx {
 
 int fstatat_statx(int fd, const char *restrict path, struct stat *restrict st, int flag)
 {
-	/* TODO: Implement fstatat_statx(). Use statx and makedev above. */
-	return -1;
+	int res = syscall(__NR_statx, fd, path, flag, STATX_BASIC_STATS, st);
+	if (res < 0) {
+		return -1;
+	}
+	return 0;
 }
 
 int fstatat(int fd, const char *restrict path, struct stat *restrict st, int flag)
 {
-	/* TODO: Implement fstatat(). Use fstatat_statx(). */
-	return -1;
+	return fstatat_statx(fd, path, st, flag);
 }

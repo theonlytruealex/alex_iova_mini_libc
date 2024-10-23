@@ -11,6 +11,7 @@ int open(const char *filename, int flags, ...)
 	long a;
 	va_start(valist, 1);
 	a = va_arg(valist, long);
+	va_end(valist);
 	long res = syscall(2, filename, flags, a);
 	if (res < 0) {
 		errno = -res;

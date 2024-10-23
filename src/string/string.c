@@ -15,14 +15,14 @@ char *strcpy(char *destination, const char *source)
 
 char *strncpy(char *destination, const char *source, size_t len)
 {
-	int i;
+	size_t i;
 	for (i = 0; i < len; i++) {
 		if (source[i] == '\0') {
 			break;
 		}
 		destination[i] = source[i];
 	}
-	for (i; i < len; i++) {
+	for (; i < len; i++) {
 		destination[i] = '\0';
 	}
 	return destination;
@@ -41,7 +41,7 @@ char *strcat(char *destination, const char *source)
 
 char *strncat(char *destination, const char *source, size_t len)
 {
-	int i = 0, len2 = strlen(destination);
+	size_t i = 0, len2 = strlen(destination);
 	while (source[i] != '\0' && i < len) {
 		destination[len2 + i] = source[i];
 		i++;
@@ -73,7 +73,7 @@ int strcmp(const char *str1, const char *str2)
 
 int strncmp(const char *str1, const char *str2, size_t len)
 {
-	int i = 0;
+	size_t i = 0;
 	while (str1[i] != '\0' && str2[i] !='\0' && i < len) {
 		if (str1[i] > str2[i]) {
 			return 1;
@@ -161,7 +161,7 @@ char *strrstr(const char *haystack, const char *needle)
 
 void *memcpy(void *destination, const void *source, size_t num)
 {
-	int i;
+	size_t i;
 	char* string_dst = (char*)destination;
 	char* string_src = (char*)source;
 
