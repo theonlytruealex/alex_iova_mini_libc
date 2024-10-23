@@ -178,7 +178,6 @@ void *memmove(void *destination, const void *source, size_t num)
 	int i;
 	char* string_dst = (char*)destination;
 	char* string_src = (char*)source;
-	char buffer[num];
 
 	// The function does not check for any terminating null character in source -
 	//it always copies exactly num bytes.
@@ -186,8 +185,7 @@ void *memmove(void *destination, const void *source, size_t num)
 		for (i = 0; i < num; i++) {
 			string_dst[i] = string_src[i];
 		}
-	}
-	else {
+	} else {
 		for (i = num - 1; i >= 0; i--) {
 			string_dst[i] = string_src[i];
 		}

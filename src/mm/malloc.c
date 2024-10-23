@@ -42,7 +42,7 @@ void free(void *ptr)
 		return;
 	}
 	size_t *free_support = (size_t *)ptr;
-	munmap((void *)&free_support[-1], free_support[-1]); 
+	munmap((void *)&free_support[-1], free_support[-1]);
 }
 
 void *realloc(void *ptr, size_t size)

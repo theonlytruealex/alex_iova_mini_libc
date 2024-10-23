@@ -6,7 +6,6 @@
 
 void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
 {
-
 	if ((flags & MAP_ANONYMOUS) == 0) {
 		int ok_files = syscall(__NR_fcntl, fd, 1);
 		if (ok_files < 0) {
