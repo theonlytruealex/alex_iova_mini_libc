@@ -15,7 +15,7 @@ void *malloc(size_t size)
 		return NULL;
 	}
 	size_t *free_support = (size_t *)ret;
-	free_support[0] = size;
+	free_support[0] = len;
 	return (void *)&free_support[1];
 }
 
@@ -27,7 +27,7 @@ void *calloc(size_t nmemb, size_t size)
 	}
 	void *ret = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 	size_t *free_support = (size_t *)ret;
-	free_support[0] = size;
+	free_support[0] = len;
 	char *zeroer = (char *)ret;
 	int i;
 	for (i = sizeof(size_t); i < len; i++) {
