@@ -110,7 +110,7 @@ char *strchr(const char *str, int c)
 	int i = 0;
 	while (str[i] != '\0') {
 		if (str[i] == c) {
-			return str + i;
+			return (char *)(str + i);
 		}
 		i++;
 	}
@@ -122,7 +122,7 @@ char *strrchr(const char *str, int c)
 	int i = strlen(str) - 1;
 	while (i >= 0) {
 		if (str[i] == c) {
-			return str + i;
+			return (char *)(str + i);
 		}
 		i--;
 	}
@@ -137,7 +137,7 @@ char *strstr(const char *haystack, const char *needle)
 		while (haystack[i + j] != '\0' && needle[j] != '\0' && haystack[i + j] == needle[j])
 			j++;
 		if (needle[j] == '\0') {
-			return haystack + i;
+			return (char *)(haystack + i);
 		}
 		i++;
 	}
@@ -152,7 +152,7 @@ char *strrstr(const char *haystack, const char *needle)
 		while (i + j >= 0 && needle_len + j > 1 && haystack[i + j] == needle[needle_len - 1 + j])
 			j--;
 		if (needle_len + j == 1) {
-			return haystack + i - needle_len + 1;
+			return (char *)(haystack + i - needle_len + 1);
 		}
 		i--;
 	}
@@ -175,7 +175,7 @@ void *memcpy(void *destination, const void *source, size_t num)
 
 void *memmove(void *destination, const void *source, size_t num)
 {
-	int i;
+	size_t i;
 	char* string_dst = (char*)destination;
 	char* string_src = (char*)source;
 
@@ -186,7 +186,7 @@ void *memmove(void *destination, const void *source, size_t num)
 			string_dst[i] = string_src[i];
 		}
 	} else {
-		for (i = num - 1; i >= 0; i--) {
+		for (i = num - 1; i + 1 > 0; i--) {
 			string_dst[i] = string_src[i];
 		}
 	}

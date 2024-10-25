@@ -9,7 +9,7 @@ int open(const char *filename, int flags, ...)
 {
 	va_list valist;
 	long a;
-	va_start(valist, 1);
+	va_start(valist, flags);
 	a = va_arg(valist, long);
 	va_end(valist);
 	long res = syscall(2, filename, flags, a);
